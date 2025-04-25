@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Athlete Profile</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Evaluate<span class="highlight">U</span></div>
+    <p class="tagline">Athlete Profile</p>
+  </header>
+
+  <main class="profile" id="profileContainer">
+    <p>Loading profile...</p>
+  </main>
+
+  <footer>© 2024 EvaluateU. All rights reserved.</footer>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem("athleteProfile"));
+    const container = document.getElementById("profileContainer");
+    if(data) {
+      container.innerHTML = `
+        <div class="profile-info">
+          <h2>${data.name}</h2>
+          <p>${data.position}</p>
+          <p>Class of ${data.classYear} • ${data.state}</p>
+        </div>
+        <div class="highlight-video">
+          <iframe width="100%" height="315" src="${data.videoURL}" frameborder="0" allowfullscreen></iframe>
+        </div>
+      `;
+    } else {
+      container.innerHTML = "<p>No profile found. Please sign up first.</p>";
+    }
+  </script>
+</body>
+</html>

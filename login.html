@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - EvaluateU</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="login-page">
+    <div class="login-box">
+      <h1>Evaluate<span class="highlight">U</span> Login</h1>
+      <input id="username" type="text" placeholder="Enter your name" />
+      <select id="role">
+        <option value="coach">Coach</option>
+        <option value="athlete">Athlete</option>
+      </select>
+      <button onclick="login()">Login</button>
+    </div>
+  </main>
+  <script>
+    function login() {
+      const user = document.getElementById("username").value;
+      const role = document.getElementById("role").value;
+      if(user.trim() !== "") {
+        localStorage.setItem("user", user);
+        localStorage.setItem("role", role);
+        window.location.href = role === "coach" ? "index.html" : "profile.html";
+      } else {
+        alert("Please enter your name.");
+      }
+    }
+  </script>
+</body>
+</html>
